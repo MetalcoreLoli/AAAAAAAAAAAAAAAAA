@@ -19,7 +19,7 @@ public static class StringExtentions
         return res.ToArray();
     }
 
-    public static IEnumerable<int> GetSubstring(this string pattern, string text) => 
+    public static IEnumerable<int> GetSubstrings(this string pattern, string text) => 
         new BorderString().SearchSubstring(pattern, text);
     
     private class BorderString 

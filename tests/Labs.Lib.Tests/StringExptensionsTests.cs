@@ -16,11 +16,11 @@ public class StringExtenstionsTests
     }
 
     [Theory]
-    [MemberData(nameof(SufixesTestsData))]
-    public void Returns_Bool_If_Pattern_Was_Found(string pattern, string text, int[] excepted)
+    [MemberData(nameof(GetRightIndexOfSubstringsTestsData))]
+    public void Returns_Right_Index_Of_Substrings_If_Pattern_Was_Found(string pattern, string text, int[] excepted)
     {
         //act
-        var result = pattern.GetSubstring(text);
+        var result = pattern.GetSubstrings(text);
 
         //assert
         result.Should().BeEquivalentTo(excepted);
@@ -31,7 +31,7 @@ public class StringExtenstionsTests
 
     #region MemberData
         
-    public static IEnumerable<object[]> SufixesTestsData = new List<object[]> ()
+    public static IEnumerable<object[]> GetRightIndexOfSubstringsTestsData = new List<object[]> ()
     {               
                     // 0  1  2  3 4 5 6  7  8
                     // a  b  a  $ a b a  b  a
