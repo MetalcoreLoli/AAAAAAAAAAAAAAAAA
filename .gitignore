@@ -10,3 +10,4 @@ src/Labs.Benchmakrs/bin/Debug/net7.0
 src/Labs.Benchmakrs/obj/Debug/net7.0
 src/Labs.Benchmakrs/obj
 src/Labs.Benchmakrs/bin
+BenchmarkDotNet.Artifacts
