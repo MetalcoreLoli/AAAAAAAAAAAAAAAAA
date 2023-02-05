@@ -1,0 +1,8 @@
+src/Labs.Lib/obj/Debug/net7.0
+src/Labs.Lib/obj
+tests/Labs.Lib.Tests/obj/Debug/net7.0
+tests/Labs.Lib.Tests/obj
+src/Labs.Lib/bin/Debug/net7.0
+src/Labs.Lib/bin/
+tests/Labs.Lib.Tests/bin/Debug/net7.0
+tests/Labs.Lib.Tests/bin/
