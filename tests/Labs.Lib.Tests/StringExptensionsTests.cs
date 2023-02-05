@@ -17,9 +17,13 @@ public class StringExtenstionsTests
 
     [Theory]
     [MemberData(nameof(SufixesTestsData))]
-    public void Returns_Array_Of_Sufixes_For_String(string value, string[] excepted)
+    public void Returns_Bool_If_Pattern_Was_Found(string pattern, string text, int[] excepted)
     {
+        //act
+        var result = pattern.GetSubstring(text);
 
+        //assert
+        result.Should().BeEquivalentTo(excepted);
     }
     #endregion
 
@@ -28,8 +32,16 @@ public class StringExtenstionsTests
     #region MemberData
         
     public static IEnumerable<object[]> SufixesTestsData = new List<object[]> ()
-    {
-        new object[] {},
+    {               
+                    // 0  1  2  3 4 5 6  7  8
+                    // a  b  a  $ a b a  b  a
+                    //-1 -1 -1 -1 0 1 2 -1 -1
+        new object[] {"aba","ababa", new int[] {6, 8}},
+
+                    // 0  1  2 3 4  5 6 7
+                    // a  b  $ a b  b a b
+                    //-1 -1 -1 0 1 -1 0 1
+        new object[] {"ab","abbab", new int[] {4, 7}},
     };
 
     public static IEnumerable<object[]> BordersTestsData = new List<object[]> ()
