@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{58F95936-351
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Labs.Lib", "src\Labs.Lib\Labs.Lib.csproj", "{5CD59ED2-145D-45EF-B376-C111D27A828E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Labs.Benchmakrs", "src\Labs.Benchmakrs\Labs.Benchmakrs.csproj", "{0CFD7262-7AC5-4715-9DFB-5C1C1B034840}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,9 +30,14 @@ Global
 		{5CD59ED2-145D-45EF-B376-C111D27A828E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CD59ED2-145D-45EF-B376-C111D27A828E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CD59ED2-145D-45EF-B376-C111D27A828E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CFD7262-7AC5-4715-9DFB-5C1C1B034840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CFD7262-7AC5-4715-9DFB-5C1C1B034840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CFD7262-7AC5-4715-9DFB-5C1C1B034840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CFD7262-7AC5-4715-9DFB-5C1C1B034840}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{722AC462-D107-4594-A84E-5D3B648B3620} = {D506E7CD-E213-480B-896E-8C4F46B666BD}
 		{5CD59ED2-145D-45EF-B376-C111D27A828E} = {58F95936-351B-40FE-B4F4-C5A8ACA6E1C6}
+		{0CFD7262-7AC5-4715-9DFB-5C1C1B034840} = {58F95936-351B-40FE-B4F4-C5A8ACA6E1C6}
 	EndGlobalSection
 EndGlobal

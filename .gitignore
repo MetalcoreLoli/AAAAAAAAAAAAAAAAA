@@ -6,3 +6,7 @@ src/Labs.Lib/bin/Debug/net7.0
 src/Labs.Lib/bin/
 tests/Labs.Lib.Tests/bin/Debug/net7.0
 tests/Labs.Lib.Tests/bin/
+src/Labs.Benchmakrs/bin/Debug/net7.0
+src/Labs.Benchmakrs/obj/Debug/net7.0
+src/Labs.Benchmakrs/obj
+src/Labs.Benchmakrs/bin
