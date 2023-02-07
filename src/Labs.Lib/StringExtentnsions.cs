@@ -48,21 +48,22 @@ public static class StringExtentions
             return borders;
         }
 
-        public List<int> SearchSubstring(String pattern, String sample) 
+        private IEnumerable<int> GetRightBorders(int[] borders, int patternLength)
+        {
+            for (int i = 0; i < borders.Length; i++) {
+                if ((borders[i] + 1) == patternLength)
+                    yield return i;
+            }
+        }
+
+        public IEnumerable<int> SearchSubstring(String pattern, String sample) 
         {
             String str = JoinRows(pattern, sample);
 
             var borders = MaxBorderArray(str).ToArray();
-
             int lengthPattern = pattern.Length;
-            var result = new List<int>();
 
-            for (int i = 0; i < borders.Length; i++) {
-                if ((borders[i] + 1) == pattern.Length)
-                    result.Add(i);
-            }
-
-            return result;
+            return GetRightBorders(borders, lengthPattern);
         }
     }
 
