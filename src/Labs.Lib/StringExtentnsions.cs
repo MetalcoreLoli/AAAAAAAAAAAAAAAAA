@@ -1,8 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿namespace Labs.Lib;
 
-namespace Labs.Lib;
-
-public static class StringExtentions
+public static partial class StringExtentions
 {
 
     public static string[] GetAllBorders(this string value)
@@ -19,22 +17,22 @@ public static class StringExtentions
         return res.ToArray();
     }
 
-    public static IEnumerable<int> GetSubstrings(this string pattern, string text) => 
-        new BorderString().SearchSubstring(pattern, text);
-    
-    private class BorderString 
+    public static IEnumerable<int> GetSubstrings(this string pattern, string text, IMethodOfSearchInString methodOfSearch) => 
+        methodOfSearch.SearchSubstring(pattern, text);
+
+    public static IEnumerable<int> GetSubstrings(this string pattern, string text) =>  
+        pattern.GetSubstrings(text, new BorderString());
+
+    private class BorderString : MethodOfSearchInString
     {
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private String JoinRows(String s1, String s2) => s1 + "$" + s2;
-
-        private IEnumerable<int> MaxBorderArray(String str) 
+        private IEnumerable<int> MaxBorderArray(String str)
         {
             int n = str.Length;
             var borders = new int[n];
             borders[0] = -1;
 
-            for (int i = 0; i < n - 1; i++) {
+            for (int i = 0; i < n - 1; i++)
+            {
                 int tmp = borders[i];
 
                 while ((tmp > -1) && (str[i + 1] != str[tmp + 1])) tmp = borders[tmp];
@@ -50,13 +48,14 @@ public static class StringExtentions
 
         private IEnumerable<int> GetRightBorders(int[] borders, int patternLength)
         {
-            for (int i = 0; i < borders.Length; i++) {
+            for (int i = 0; i < borders.Length; i++)
+            {
                 if ((borders[i] + 1) == patternLength)
                     yield return i;
             }
         }
 
-        public IEnumerable<int> SearchSubstring(String pattern, String sample) 
+        public override IEnumerable<int> SearchSubstring(String pattern, String sample)
         {
             String str = JoinRows(pattern, sample);
 
@@ -66,5 +65,4 @@ public static class StringExtentions
             return GetRightBorders(borders, lengthPattern);
         }
     }
-
 }
