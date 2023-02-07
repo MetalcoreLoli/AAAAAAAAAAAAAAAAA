@@ -20,17 +20,39 @@ public class StringExtenstionsTests
     public void Returns_Right_Index_Of_Substrings_If_Pattern_Was_Found(string pattern, string text, int[] excepted)
     {
         //act
-        var result = pattern.GetSubstrings(text);
+        var result = 
+            pattern.GetSubstrings(text, new StringExtentions.BorderStringSearchMethod());
+
+        //assert
+        result.Should().BeEquivalentTo(excepted);
+    }
+    
+    [Theory]
+    [MemberData(nameof(GetIndexesOfSubstringsTestsData))]
+    public void Returns_Indexes_Of_Substrings_If_Pattern_Was_Found(string pattern, string text, int[] excepted)
+    {
+        //act
+        var result = 
+            pattern.GetSubstrings(text, StringExtentions.BlocksProgrammerMethod);
 
         //assert
         result.Should().BeEquivalentTo(excepted);
     }
     #endregion
 
-
+    //ab abc 
+    //ab  - 2
+    //abcadb - 6
+    //ab - 2
 
     #region MemberData
         
+    public static IEnumerable<object[]> GetIndexesOfSubstringsTestsData = new List<object[]> ()
+    {               
+        new object[] {"aba","ababa", new int[] {0, 2}},
+        new object[] {"ab","abbab", new int[] {0, 3}},
+    };
+
     public static IEnumerable<object[]> GetRightIndexOfSubstringsTestsData = new List<object[]> ()
     {               
                     // 0  1  2  3 4 5 6  7  8
