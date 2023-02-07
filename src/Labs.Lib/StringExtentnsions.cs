@@ -21,9 +21,9 @@ public static partial class StringExtentions
         methodOfSearch.SearchSubstring(pattern, text);
 
     public static IEnumerable<int> GetSubstrings(this string pattern, string text) =>  
-        pattern.GetSubstrings(text, new BorderString());
+        pattern.GetSubstrings(text, new BorderStringSearchMethod());
 
-    private class BorderString : MethodOfSearchInString
+    public class BorderStringSearchMethod : MethodOfSearchInString
     {
         private IEnumerable<int> MaxBorderArray(String str)
         {

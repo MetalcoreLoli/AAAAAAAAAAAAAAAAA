@@ -9,7 +9,7 @@ public static partial class StringExtentions
         IEnumerable<int> SearchSubstring(string pattern, string sample);
     }
     
-    internal abstract class MethodOfSearchInString : IMethodOfSearchInString
+    public abstract class MethodOfSearchInString : IMethodOfSearchInString
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected String JoinRows(String s1, String s2) => s1 + "$" + s2;
