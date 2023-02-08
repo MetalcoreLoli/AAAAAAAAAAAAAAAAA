@@ -6,11 +6,13 @@ public static partial class StringExtentions
     {
         private BlocksStringSearchMethod() {}
 
-        private int Cmp(String str, int pos1, int pos2) {
+        private int Cmp(String str, int pos1, int pos2) 
+        {
             int n = str.Length;
 
             int eqLen = 0;
-            while (pos1 < n && pos2 < n && str[pos1++] == str[pos2++]) ++eqLen;
+            while (pos1 < n && pos2 < n && str[pos1++] == str[pos2++]) 
+                ++eqLen;
 
             return eqLen;
         }
@@ -19,25 +21,32 @@ public static partial class StringExtentions
             var blocks = new int[str.Length];
             int n = str.Length;
             int left = 0, right = 0;
-            for (int i = 1; i < n; i++) {
+
+            for (int i = 1; i < n; i++) 
+            {
                 blocks[i] = 0;
-                if (i >= right) {
+                if (i >= right) 
+                {
                     blocks[i] = Cmp(str, 0, i);
 
                     if (blocks[i] > 0) {
                         right = i + blocks[i];
                         left = i;
                     }
-                } else {
+                } 
+                else 
+                {
                     int k = i - left;
 
                     if (blocks[k] < right - i)
                         blocks[i] = blocks[k];
-                    else {
+                    else 
+                    {
                         blocks[i] = right - i;
                         left = i;
                         int complement = Cmp(str, right - i, right);
-                        if (complement > 0){
+                        if (complement > 0)
+                        {
                             blocks[i] += complement;
                             right = i + blocks[i];
                         }
@@ -73,8 +82,7 @@ public static partial class StringExtentions
             var str = JoinRows(pattern, sample);
             var blocks = Blocks(str).ToArray();
 
-            int lengthPattern = pattern.Length;
-            var result = GetBlocks(blocks, lengthPattern).ToList();
+            var result = GetBlocks(blocks, pattern.Length).ToList();
 
             return IndexForma switch       
             {
