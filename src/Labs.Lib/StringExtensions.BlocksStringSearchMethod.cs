@@ -16,13 +16,15 @@ public static partial class StringExtensions
             int n = str.Length;
 
             int eqLen = 0;
-            while (patternPosition < n && substringPosition < n && str[patternPosition++] == str[substringPosition++]) 
+            while (patternPosition < n && substringPosition < n 
+                    && str[patternPosition++] == str[substringPosition++]) 
                 ++eqLen;
 
             return eqLen;
         }
 
-        private int LengthOfMatchedSubstring(string str, int startOfSubstring) => Cmp(str, 0, startOfSubstring);
+        private int LengthOfMatchedSubstring(string str, int startOfSubstring) => 
+            Cmp(str, 0, startOfSubstring);
 
         private IEnumerable<int> Blocks(string str) {
             var blocks = new int[str.Length];
