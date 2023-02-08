@@ -15,9 +15,15 @@ public class GetSubstringBenchmark
 
 
     [Benchmark]
-    public void GetSubstrings()
+    public void GetSubstringsByBorders()
     {
-        Pattern.GetSubstrings(Text);
+        Pattern.GetSubstrings(Text, StringExtentions.BordersMethod);
+    }
+    
+    [Benchmark]
+    public void GetSubstringsByBlocks()
+    {
+        Pattern.GetSubstrings(Text, StringExtentions.BordersMethod);
     }
 
     public IEnumerable<string> Patterns => new List<string>() 
