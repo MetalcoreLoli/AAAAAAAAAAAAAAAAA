@@ -1,6 +1,6 @@
 ﻿namespace Labs.Lib;
 
-public static partial class StringExtentions
+public static partial class StringExtensions
 {
 
     public static string[] GetAllBorders(this string value)

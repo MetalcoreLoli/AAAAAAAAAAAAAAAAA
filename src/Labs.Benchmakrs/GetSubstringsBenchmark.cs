@@ -17,13 +17,13 @@ public class GetSubstringBenchmark
     [Benchmark]
     public void GetSubstringsByBorders()
     {
-        Pattern.GetSubstrings(Text, StringExtentions.BordersMethod);
+        Pattern.GetSubstrings(Text, StringExtensions.BordersMethod);
     }
     
     [Benchmark]
     public void GetSubstringsByBlocks()
     {
-        Pattern.GetSubstrings(Text, StringExtentions.BordersMethod);
+        Pattern.GetSubstrings(Text, StringExtensions.BordersMethod);
     }
 
     public IEnumerable<string> Patterns => new List<string>() 

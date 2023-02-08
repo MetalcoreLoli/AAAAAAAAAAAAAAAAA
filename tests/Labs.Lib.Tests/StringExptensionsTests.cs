@@ -21,7 +21,7 @@ public class StringExtenstionsTests
     {
         //act
         var result = 
-            pattern.GetSubstrings(text, new StringExtentions.BorderStringSearchMethod());
+            pattern.GetSubstrings(text, new StringExtensions.BorderStringSearchMethod());
 
         //assert
         result.Should().BeEquivalentTo(excepted);
@@ -33,7 +33,7 @@ public class StringExtenstionsTests
     {
         //act
         var result = 
-            pattern.GetSubstrings(text, StringExtentions.BlocksProgrammerMethod);
+            pattern.GetSubstrings(text, StringExtensions.BlocksProgrammerMethod);
 
         //assert
         result.Should().BeEquivalentTo(excepted);
