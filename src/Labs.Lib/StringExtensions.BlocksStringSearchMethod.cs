@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace Labs.Lib;
 
 public static partial class StringExtensions
@@ -6,49 +8,55 @@ public static partial class StringExtensions
     {
         private BlocksStringSearchMethod() {}
 
-        private int Cmp(String str, int pos1, int pos2) 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private bool IsIndexInsideOfString(string str, int idx) => str.Length > idx;
+
+        private int Cmp(string str, int patternPosition, int substringPosition) 
         {
             int n = str.Length;
 
             int eqLen = 0;
-            while (pos1 < n && pos2 < n && str[pos1++] == str[pos2++]) 
+            while (patternPosition < n && substringPosition < n && str[patternPosition++] == str[substringPosition++]) 
                 ++eqLen;
 
             return eqLen;
         }
 
+        private int LengthOfMatchedSubstring(string str, int startOfSubstring) => Cmp(str, 0, startOfSubstring);
+
         private IEnumerable<int> Blocks(string str) {
             var blocks = new int[str.Length];
-            int n = str.Length;
-            int left = 0, right = 0;
+            int leftIdx = 0, rightIdx = 0;
 
-            for (int i = 1; i < n; i++) 
+            for (int i = 1; i < str.Length; i++) 
             {
                 blocks[i] = 0;
-                if (i >= right) 
+                if (i >= rightIdx) 
                 {
-                    blocks[i] = Cmp(str, 0, i);
+                    blocks[i] = LengthOfMatchedSubstring(str, i);
+                    var isSubstringExist = blocks[i] > 0;
 
-                    if (blocks[i] > 0) {
-                        right = i + blocks[i];
-                        left = i;
+                    if (isSubstringExist) 
+                    {
+                        rightIdx = i + blocks[i];
+                        leftIdx = i;
                     }
                 } 
                 else 
                 {
-                    int k = i - left;
+                    int k = i - leftIdx;
 
-                    if (blocks[k] < right - i)
+                    if (blocks[k] < rightIdx - i)
                         blocks[i] = blocks[k];
                     else 
                     {
-                        blocks[i] = right - i;
-                        left = i;
-                        int complement = Cmp(str, right - i, right);
+                        blocks[i] = rightIdx - i;
+                        leftIdx = i;
+                        int complement = Cmp(str, rightIdx - i, rightIdx);
                         if (complement > 0)
                         {
                             blocks[i] += complement;
-                            right = i + blocks[i];
+                            rightIdx = i + blocks[i];
                         }
                     }
                 }
@@ -77,9 +85,9 @@ public static partial class StringExtensions
             }
         }
 
-        public override IEnumerable<int> SearchSubstring(string pattern, string sample)
+        public override IEnumerable<int> SearchSubstring(string pattern, string text)
         {
-            var str = JoinRows(pattern, sample);
+            var str = JoinRows(pattern, text);
             var blocks = Blocks(str).ToArray();
 
             var result = GetBlocks(blocks, pattern.Length).ToList();
