@@ -25,7 +25,7 @@ public static partial class StringExtentions
             return borders;
         }
 
-        private IEnumerable<int> GetRightBorders(int[] borders, int patternLength)
+        public IEnumerable<int> GetRightBorders(int[] borders, int patternLength)
         {
             for (int i = 0; i < borders.Length; i++)
             {

@@ -2,37 +2,12 @@ namespace Labs.Lib;
 
 public static partial class StringExtentions
 {
-    public class BlocksStringSearchMethod : MethodOfSearchInString {
-        public enum IndexType
-        {
-            Human, Programmer
-        }
-
-        public IndexType IndexForma { get; }
-
+    public class BlocksStringSearchMethod : MethodOfSearchInString 
+    {
         private BlocksStringSearchMethod() {}
 
-        public BlocksStringSearchMethod(IndexType indexForma)
-        {
-            IndexForma = indexForma;
-        }
-
-        private int[] block;
-
-        private int cmp(String str, int pos1, int pos2) {
-            int n = str.Length, dist;
-
-            if (pos1 >= n || pos2 >= n) return 0;
-
-            dist = (n - pos1 < n - pos2) ? (n - pos1) : (n - pos2);
-            int j = 0;
-            while (j < dist && str[pos1 + j] == str[pos2 + j]) j++;
-
-            return j;
-        }
-
-        private int cmp2(String str, int pos1, int pos2) {
-            int n = str.Length, dist;
+        private int Cmp(String str, int pos1, int pos2) {
+            int n = str.Length;
 
             int eqLen = 0;
             while (pos1 < n && pos2 < n && str[pos1++] == str[pos2++]) ++eqLen;
@@ -40,52 +15,66 @@ public static partial class StringExtentions
             return eqLen;
         }
 
-        private void blocArrays(String str) {
+        private IEnumerable<int> Blocks(string str) {
+            var blocks = new int[str.Length];
             int n = str.Length;
-            int left = 0;
-            int right = 0;
-            block[0] = 0;
+            int left = 0, right = 0;
             for (int i = 1; i < n; i++) {
-                block[i] = 0;
+                blocks[i] = 0;
                 if (i >= right) {
-                    block[i] = cmp2(str, 0, i);
+                    blocks[i] = Cmp(str, 0, i);
 
-                    if (block[i] > 0) {
-                        right = i + block[i];
+                    if (blocks[i] > 0) {
+                        right = i + blocks[i];
                         left = i;
                     }
                 } else {
                     int k = i - left;
 
-                    if (block[k] < right - i)
-                        block[i] = block[k];
+                    if (blocks[k] < right - i)
+                        blocks[i] = blocks[k];
                     else {
-                        block[i] = right - i;
+                        blocks[i] = right - i;
                         left = i;
-                        int complement = cmp2(str, right - i, right);
+                        int complement = Cmp(str, right - i, right);
                         if (complement > 0){
-                            block[i] = block[i] + complement;
-                            right = i + block[i];
+                            blocks[i] += complement;
+                            right = i + blocks[i];
                         }
                     }
                 }
+            }
+            return blocks;
+        }
+
+        public enum IndexType
+        {
+            Human, Programmer
+        }
+
+        public IndexType IndexForma { get; }
+
+
+        public BlocksStringSearchMethod(IndexType indexForma)
+        {
+            IndexForma = indexForma;
+        }
+
+        public IEnumerable<int> GetBlocks(int[] data, int patternLen)
+        {
+            for (int i = 0; i < data.Length; i++) {
+                if (data[i] == patternLen)
+                    yield return (i - patternLen);
             }
         }
 
         public override IEnumerable<int> SearchSubstring(string pattern, string sample)
         {
-            String str = JoinRows(pattern, sample);
-
-            block = new int[str.Length];
-            blocArrays(str);
+            var str = JoinRows(pattern, sample);
+            var blocks = Blocks(str).ToArray();
 
             int lengthPattern = pattern.Length;
-            var result = new List<int>();
-
-            for (int i = 0; i < block.Length; i++) {
-                if (block[i] == lengthPattern)
-                    result.Add(i - lengthPattern);
-            }
+            var result = GetBlocks(blocks, lengthPattern).ToList();
 
             return IndexForma switch       
             {
