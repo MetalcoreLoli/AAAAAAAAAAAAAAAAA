@@ -4,7 +4,7 @@ using Labs.Lib;
 
 namespace Labs.Benchmarks;
 
-[MemoryDiagnoser, Orderer(SummaryOrderPolicy.FastestToSlowest), RankColumn]
+[MemoryDiagnoser, Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Alphabetical), RankColumn]
 public class GetSubstringBenchmark
 {
     [ParamsSource(nameof(Patterns))]
