@@ -1,0 +1,10 @@
+[
+    {
+        "Pattern": "aba",
+        "Text": "ababa"
+    },
+    {
+        "Pattern": "ab",
+        "Text": "abbab"
+    }
+]
