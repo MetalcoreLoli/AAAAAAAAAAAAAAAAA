@@ -27,7 +27,7 @@ internal static class Program
         {
             System.Console.WriteLine(data);
             System.Console.WriteLine($"borders: {data.Pattern.GetSubstrings(data.Text, StringExtensions.BordersMethod).ArrayToString(' ')}");
-            System.Console.WriteLine($"borders: \"{data.Text.GetAllBorders().Aggregate("", (acc, i ) => acc + "," + i)}\"");
+            System.Console.WriteLine($"borders: {data.Text.GetAllBorders().Aggregate("", (acc, i ) => acc + i + " ")}");
             System.Console.WriteLine($"blocks: {data.Pattern.GetSubstrings(data.Text, StringExtensions.BlocksProgrammerMethod).ArrayToString(' ')}");
             System.Console.WriteLine();
         }
