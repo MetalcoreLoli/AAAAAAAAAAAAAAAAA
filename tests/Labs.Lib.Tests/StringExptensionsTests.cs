@@ -38,6 +38,29 @@ public class StringExtenstionsTests
         //assert
         result.Should().BeEquivalentTo(excepted);
     }
+
+    [Theory]
+    [MemberData(nameof(TransmutationTestData))]
+    public void Transmutation_Of_Blocks_Should_Return_Borders(int[] blocks, int[] borders)
+    {
+        //act
+        var result = StringExtensions.Transmutation.FromBlocksToBorder(blocks, borders);
+
+        //assert
+        result.Should().BeEquivalentTo(borders);
+    }
+
+    [Theory]
+    [MemberData(nameof(TransmutationTestData))]
+    public void Transmutation_Of_Borders_Should_Return_Blocks(int[] blocks, int[] borders)
+    {
+        //act
+        var result = StringExtensions.Transmutation.FromBordersToBlocks(blocks, borders);
+
+        //assert
+        result.Should().BeEquivalentTo(blocks);
+    }
+
     #endregion
 
     //ab abc 
@@ -65,6 +88,12 @@ public class StringExtenstionsTests
                     //-1 -1 -1 0 1 -1 0 1
         new object[] {"ab","abbab", new int[] {4, 7}},
     };
+    
+    public static IEnumerable<object[]> TransmutationTestData = new List<object[]> ()
+    {               
+        new object[] {new int[] {4, 6}, new int[] {6, 8}},
+        new object[] {new int[] {2, 5}, new int[] {4, 7}},
+    };
 
     public static IEnumerable<object[]> BordersTestsData = new List<object[]> ()
     {
@@ -87,5 +116,6 @@ public class StringExtenstionsTests
         new object[] {"abaababaabaababaabaab", new string[] {"ab", "abaab", "abaababaabaab"}},
         new object[] {"abaababaabaababaabaababaababaabaab", new string[] {"ab", "abaab", "abaababaabaab"}},
     };
+
     #endregion
 }
