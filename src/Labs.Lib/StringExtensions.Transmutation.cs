@@ -6,7 +6,7 @@ public static partial class StringExtensions
     {
         public static IEnumerable<int> FromBlocksToBorders(int[] blocks, int[] borders)
         {
-            var patternLenght = borders.First() - blocks.First();
+            var patternLenght = Math.Abs(borders.First() - blocks.First());
             return blocks.Select(block => block + patternLenght);
         }
 
