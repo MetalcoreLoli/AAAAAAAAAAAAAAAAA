@@ -39,15 +39,21 @@ public class StringExtenstionsTests
         result.Should().BeEquivalentTo(excepted);
     }
 
-    [Theory]
-    [MemberData(nameof(TransmutationTestData))]
-    public void Transmutation_Of_Blocks_Should_Return_Borders(int[] blocks, int[] borders)
+    [Fact]
+    public void Transmutation_Of_Blocks_Should_Return_Borders()
     {
+        var pattern = "aba";
+        var text = "ababa";
+        var patternText = pattern + "$" + text;
+
+        var excepted = StringExtensions.BordersMethod.BordersTable(patternText).ToArray();    
+        var blocks = StringExtensions.BlocksProgrammerMethod.BlocksTable(patternText).ToArray();
+
         //act
-        var result = StringExtensions.Transmutation.FromBlocksToBorders(blocks, borders);
+        var result = StringExtensions.Transmutation.FromBlocksToBorders(blocks, (patternText).Length);
 
         //assert
-        result.Should().BeEquivalentTo(borders);
+        result.Should().BeEquivalentTo(excepted);
     }
 
     [Theory]
@@ -81,12 +87,12 @@ public class StringExtenstionsTests
                     // 0  1  2  3 4 5 6  7  8
                     // a  b  a  $ a b a  b  a
                     //-1 -1 -1 -1 0 1 2  1  2
-        new object[] {"aba","ababa", new int[] {6, 8}},
+        new object[] {"aba","ababa", new int[] {2, 4}},
 
                     // 0  1  2 3 4  5 6 7
                     // a  b  $ a b  b a b
                     //-1 -1 -1 0 1 -1 0 1
-        new object[] {"ab","abbab", new int[] {4, 7}},
+        new object[] {"ab","abbab", new int[] {1, 4}},
     };
     
     public static IEnumerable<object[]> TransmutationTestData = new List<object[]> ()

@@ -26,7 +26,7 @@ public static partial class StringExtensions
         private int LengthOfMatchedSubstring(string str, int startOfSubstring) => 
             Cmp(str, 0, startOfSubstring);
 
-        private IEnumerable<int> Blocks(string str) {
+        public IEnumerable<int> BlocksTable(string str) {
             var blocks = new int[str.Length];
             int leftIdx = 0, rightIdx = 0;
 
@@ -79,7 +79,7 @@ public static partial class StringExtensions
             IndexForma = indexForma;
         }
 
-        public IEnumerable<int> GetBlocks(int[] data, int patternLen)
+        private IEnumerable<int> GetBlocks(int[] data, int patternLen)
         {
             for (int i = 0; i < data.Length; i++) {
                 if (data[i] == patternLen)
@@ -90,7 +90,7 @@ public static partial class StringExtensions
         public override IEnumerable<int> SearchSubstring(string pattern, string text)
         {
             var str = JoinRows(pattern, text);
-            var blocks = Blocks(str).ToArray();
+            var blocks = BlocksTable(str).ToArray();
 
             var result = GetBlocks(blocks, pattern.Length).ToList();
 
