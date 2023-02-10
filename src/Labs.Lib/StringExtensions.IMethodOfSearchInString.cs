@@ -17,24 +17,4 @@ public static partial class StringExtensions
 
         public abstract IEnumerable<int> SearchSubstring(string pattern, string sample);
     }
-
-    public static class TransmutationOfSearchResults 
-    {
-        public static IEnumerable<int> FromBlocksToBorder(int[] blocks, int[] borders)
-        {
-            borders[0] = 0;
-            for (int i = 1; i < blocks.Length; i++)
-            {
-
-            }
-            return null;
-        }
-
-        public static IEnumerable<int> FromBordersToBlocks(int[] blocks, int[] borders)
-        {
-            return null;
-        }
-
-    }
 }
-

@@ -44,7 +44,7 @@ public class StringExtenstionsTests
     public void Transmutation_Of_Blocks_Should_Return_Borders(int[] blocks, int[] borders)
     {
         //act
-        var result = StringExtensions.Transmutation.FromBlocksToBorder(blocks, borders);
+        var result = StringExtensions.Transmutation.FromBlocksToBorders(blocks, borders);
 
         //assert
         result.Should().BeEquivalentTo(borders);
