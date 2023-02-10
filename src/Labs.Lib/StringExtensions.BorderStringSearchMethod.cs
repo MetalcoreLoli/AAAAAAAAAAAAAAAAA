@@ -30,7 +30,7 @@ public static partial class StringExtensions
             for (int i = 0; i < borders.Length; i++)
             {
                 if ((borders[i] + 1) == patternLength)
-                    yield return i;
+                    yield return (i - patternLength - 1);
             }
         }
 
