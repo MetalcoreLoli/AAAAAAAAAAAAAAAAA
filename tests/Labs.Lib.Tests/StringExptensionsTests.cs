@@ -56,15 +56,21 @@ public class StringExtenstionsTests
         result.Should().BeEquivalentTo(excepted);
     }
 
-    [Theory]
-    [MemberData(nameof(TransmutationTestData))]
-    public void Transmutation_Of_Borders_Should_Return_Blocks(int[] blocks, int[] borders)
+    [Fact]
+    public void Transmutation_Of_Borders_Should_Return_Blocks()
     {
+        var pattern = "aba";
+        var text = "ababa";
+        var patternText = pattern + "$" + text;
+
+        var borders = StringExtensions.BordersMethod.BordersTable(patternText).ToArray();
+        var excepted  = StringExtensions.BlocksProgrammerMethod.BlocksTable(patternText).ToArray();
+
         //act
-        var result = StringExtensions.Transmutation.FromBordersToBlocks(blocks, borders);
+        var result = StringExtensions.Transmutation.FromBordersToBlocks(borders, (patternText).Length);
 
         //assert
-        result.Should().BeEquivalentTo(blocks);
+        result.Should().BeEquivalentTo(excepted);
     }
 
     #endregion

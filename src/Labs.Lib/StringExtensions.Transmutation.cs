@@ -18,11 +18,53 @@ public static partial class StringExtensions
             return borders.Select(i => i - 1);
         }
 
-        public static IEnumerable<int> FromBordersToBlocks(int[] blocks, int[] borders)
+        public static IEnumerable<int> FromBordersToBlocks(int[] brs, int n)
         {
-            var patternLenght = Math.Abs(borders.First() - blocks.First());
-            return borders.Select(border => border - patternLenght);
-        }
+            int ValGrow(int[] borders, int stringLength, int nVal, int i0) 
+            {
+                int nLeft = i0 - 1; 
+                int nRight = stringLength; 
+                int nL = nVal - i0;
+                while (nLeft < nRight - 1)
+                {
+                    int nMid = (nLeft + nRight) >> 1;
+                    if (nL + nMid == borders[nMid]) 
+                        nLeft = nMid; 
+                    else 
+                        nRight = nMid;
+                }
+                return nLeft - i0 + 1;
+            }
 
+            // data normalization
+            var borders = brs.Select(d => d + 1).ToArray();
+
+            int leftIdx = 0, rightIdx = 0;
+            var blocks = new int[borders.Length];
+            for (var i = 1; i < n; i++)
+            {
+                blocks[i] = 0;
+                if (i >= rightIdx)
+                {
+                    blocks[i] = ValGrow(borders, n, 1, i);
+                    leftIdx = i;
+                    rightIdx = leftIdx + blocks[i];
+                }
+                else 
+                {
+                    int j = i - leftIdx;
+                    if (blocks[j] < rightIdx - i) 
+                        blocks[i] = blocks[j];
+                    else 
+                    {
+                        blocks[i] = rightIdx - i + ValGrow(borders, n, rightIdx - i + 1, rightIdx);
+                        leftIdx = i; 
+                        rightIdx = leftIdx + blocks[i];
+                    }
+                }
+            }
+
+            return blocks;
+        }
     }
 }
