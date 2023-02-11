@@ -11,8 +11,18 @@ public static partial class StringExtensions
     
     public abstract class MethodOfSearchInString : IMethodOfSearchInString
     {
+        ///<summary>
+        /// Метод конкатенирует строки <paramref name="pattern"/> и <paramref name="text"/> и ставит между 
+        /// <paramref name="sep"/>
+        ///</summary>
+        ///<param name="pattern"> паттерн </param>
+        ///<param name="text"> текст </param>
+        ///<param name="sep"> не алфавитный символ </param>
+        ///<returns> 
+        /// Возвращает строку <paramref name="pattern"/> + <paramref name="sep"/> + <paramref name="text"/> 
+        ///</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected String JoinRows(String s1, String s2) => s1 + "$" + s2;
+        protected string JoinStrings(string pattern, string text, char sep) => pattern + sep + text;
 
         public abstract IEnumerable<int> GetTable(string str);
 

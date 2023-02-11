@@ -88,7 +88,7 @@ public static partial class StringExtensions
 
         public override IEnumerable<int> SearchSubstring(string pattern, string text)
         {
-            var str = JoinRows(pattern, text);
+            var str = JoinString(pattern, text);
             var blocks = GetTable(str).ToArray();
 
             var result = GetStartIndexiesOfSubstrings(blocks, pattern.Length).ToList();
