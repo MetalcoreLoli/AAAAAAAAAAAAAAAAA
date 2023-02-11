@@ -49,7 +49,7 @@ public static partial class StringExtensions
 
         public override IEnumerable<int> SearchSubstring(String pattern, String sample)
         {
-            String str = JoinString(pattern, sample);
+            String str = JoinStrings(pattern, sample);
 
             var borders = GetTable(str).ToArray();
             int lengthPattern = pattern.Length;

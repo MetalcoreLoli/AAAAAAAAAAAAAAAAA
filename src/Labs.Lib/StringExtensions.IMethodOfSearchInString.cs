@@ -22,7 +22,7 @@ public static partial class StringExtensions
         /// Возвращает строку <paramref name="pattern"/> + <paramref name="sep"/> + <paramref name="text"/> 
         ///</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected string JoinStrings(string pattern, string text, char sep) => pattern + sep + text;
+        protected string JoinStrings(string pattern, string text, char sep = '$') => pattern + sep + text;
 
         public abstract IEnumerable<int> GetTable(string str);
 
