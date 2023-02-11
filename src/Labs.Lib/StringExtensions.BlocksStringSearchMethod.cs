@@ -6,8 +6,6 @@ public static partial class StringExtensions
 {
     public class BlocksStringSearchMethod : MethodOfSearchInString 
     {
-        private BlocksStringSearchMethod() {}
-
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool IsIndexInsideOfString(string str, int idx) => str.Length > idx;
 
@@ -86,18 +84,6 @@ public static partial class StringExtensions
             }
         }
 
-        public enum IndexType
-        {
-            Human, Programmer
-        }
-
-        public IndexType IndexForma { get; }
-
-
-        public BlocksStringSearchMethod(IndexType indexForma)
-        {
-            IndexForma = indexForma;
-        }
 
 
         public override IEnumerable<int> SearchSubstring(string pattern, string text)
@@ -107,12 +93,7 @@ public static partial class StringExtensions
 
             var result = GetStartIndexiesOfSubstrings(blocks, pattern.Length).ToList();
 
-            return IndexForma switch       
-            {
-                IndexType.Programmer => result.Select(i => i - 1),
-                IndexType.Human => result,
-                _ => throw new ArgumentOutOfRangeException()
-            };
+            return result.Select(i => i - 1);
         }
     }
 }

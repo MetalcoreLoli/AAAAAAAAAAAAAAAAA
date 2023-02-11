@@ -33,7 +33,7 @@ public class StringExtenstionsTests
     {
         //act
         var result = 
-            pattern.GetSubstrings(text, StringExtensions.BlocksProgrammerMethod);
+            pattern.GetSubstrings(text, StringExtensions.BlocksMethod);
 
         //assert
         result.Should().BeEquivalentTo(excepted);
@@ -47,7 +47,7 @@ public class StringExtenstionsTests
         var patternText = pattern + "$" + text;
 
         var excepted = StringExtensions.BordersMethod.GetTable(patternText).ToArray();    
-        var blocks = StringExtensions.BlocksProgrammerMethod.GetTable(patternText).ToArray();
+        var blocks = StringExtensions.BlocksMethod.GetTable(patternText).ToArray();
 
         //act
         var result = StringExtensions.Transmutation.FromBlocksToBorders(blocks, (patternText).Length);
@@ -64,7 +64,7 @@ public class StringExtenstionsTests
         var patternText = pattern + "$" + text;
 
         var borders = StringExtensions.BordersMethod.GetTable(patternText).ToArray();
-        var excepted  = StringExtensions.BlocksProgrammerMethod.GetTable(patternText).ToArray();
+        var excepted  = StringExtensions.BlocksMethod.GetTable(patternText).ToArray();
 
         //act
         var result = StringExtensions.Transmutation.FromBordersToBlocks(borders, (patternText).Length);

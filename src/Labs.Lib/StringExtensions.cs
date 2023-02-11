@@ -23,8 +23,7 @@ public static partial class StringExtensions
     public static IEnumerable<int> GetSubstrings(this string pattern, string text) =>  
         pattern.GetSubstrings(text, new BorderStringSearchMethod());
 
-    public static BlocksStringSearchMethod BlocksHumanMethod => new(BlocksStringSearchMethod.IndexType.Human);
-    public static BlocksStringSearchMethod BlocksProgrammerMethod => new(BlocksStringSearchMethod.IndexType.Programmer);
+    public static BlocksStringSearchMethod BlocksMethod => new();
     
     public static BorderStringSearchMethod BordersMethod => new();
 
