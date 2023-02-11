@@ -9,7 +9,9 @@ public static partial class StringExtensions
         ///</summary>
         ///<param name="borders"> Таблица граней </param>
         ///<param name="patternLength"> Длина шаблона </param>
-        private IEnumerable<int> GetRightBorders(int[] borders, int patternLength)
+        private IEnumerable<int> GetRightBorders(
+            int[] borders,
+            int patternLength)
         {
             for (int i = 0; i < borders.Length; i++)
             {
@@ -45,14 +47,17 @@ public static partial class StringExtensions
                     patternIdx = prevPatternIdx + 1;
                 }
 
-                borders[charIdx] = str[charIdx] == str[patternIdx] ? patternIdx : -1;
+                borders[charIdx] = 
+                    str[charIdx] == str[patternIdx] ? patternIdx : -1;
             }
 
             return borders;
         }
 
 
-        public override IEnumerable<int> SearchSubstring(String pattern, String sample)
+        public override IEnumerable<int> SearchSubstring(
+            String pattern,
+            String sample)
         {
             String str = JoinStrings(pattern, sample);
 
@@ -63,4 +68,3 @@ public static partial class StringExtensions
         }
     }
 }
-

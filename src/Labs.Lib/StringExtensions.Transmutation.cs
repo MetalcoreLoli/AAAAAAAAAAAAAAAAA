@@ -8,7 +8,9 @@ public static partial class StringExtensions
         /// Метода преобразовывает <paramref name="blocks"/> в таблицу граней
         /// </summary>
         /// <param name="blocks"> Таблица блоков </param>
-        /// <param name="n"> Длина строки состоящей из не алфавитного символа, шаблона и текста</param>
+        /// <param name="n"> 
+        /// Длина строки состоящей из не алфавитного символа, шаблона и текста
+        /// </param>
         /// <returns> Возвращает таблицу граней </returns>
         public static IEnumerable<int> FromBlocksToBorders(int[] blocks, int n)
         {
@@ -28,7 +30,9 @@ public static partial class StringExtensions
         /// Метода преобразовывает <paramref name="brs"/> в таблицу блоков 
         /// </summary>
         /// <param name="brs"> Таблица граней </param>
-        /// <param name="n"> Длина строки состоящей из не алфавитного символа, шаблона и текста</param>
+        /// <param name="n"> 
+        /// Длина строки состоящей из не алфавитного символа, шаблона и текста
+        /// </param>
         /// <returns> Возвращает таблицу блоков </returns>
         public static IEnumerable<int> FromBordersToBlocks(int[] brs, int n)
         {
@@ -69,13 +73,14 @@ public static partial class StringExtensions
                         blocks[i] = blocks[j];
                     else 
                     {
-                        blocks[i] = rightIdx - i + ValGrow(borders, n, rightIdx - i + 1, rightIdx);
+                        blocks[i] = 
+                            rightIdx - i 
+                            + ValGrow(borders, n, rightIdx - i + 1, rightIdx);
                         leftIdx = i; 
                         rightIdx = leftIdx + blocks[i];
                     }
                 }
             }
-
             return blocks;
         }
     }

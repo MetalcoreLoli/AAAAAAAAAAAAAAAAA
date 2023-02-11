@@ -7,7 +7,8 @@ public static partial class StringExtensions
     public class BlocksStringSearchMethod : MethodOfSearchInString 
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private bool IsIndexInsideOfString(string str, int idx) => str.Length > idx;
+        private bool IsIndexInsideOfString(string str, int idx) => 
+            str.Length > idx;
 
         ///<summary>
         /// Метод сравнивает подстроки
@@ -15,7 +16,9 @@ public static partial class StringExtensions
         ///<param name="str"> Текст, в котором сравниваются подстроки </param>
         ///<param name="s1Position"> Начало первой подстроки </param>
         ///<param name="s2Position"> Начало второй подстроки </param>
-        ///<returns> Возвращает длину подстроки, если подстроки не равны, то вернется 0 </returns>
+        ///<returns> 
+        ///Возвращает длину подстроки, если подстроки не равны, то вернется 0 
+        ///</returns>
         private int Cmp(string str, int s1Position, int s2Position) 
         {
             int n = str.Length;
@@ -32,11 +35,15 @@ public static partial class StringExtensions
         /// Длина следующей совпавшей с паттерном подстроки
         ///</summary>
         ///<param name="str"> паттерн + 'не_алфавитный_символ' + текст</param>
-        ///<param name="startOfSubstring"> индекс в <paramref name="str"/> откуда начинать сравнение. <param>
+        ///<param name="startOfSubstring"> 
+        /// индекс в <paramref name="str"/> откуда начинать сравнение. 
+        ///<param>
         ///<returns>
         ///  Вернет длину подстроки или 0, если подстрока не будет совпадать с паттерном.
         ///</returns>
-        private int LengthOfNextMatchedSubstring(string str, int startOfSubstring) => 
+        private int LengthOfNextMatchedSubstring(
+            string str,
+            int startOfSubstring) => 
             Cmp(str, 0, startOfSubstring);
 
         ///<summary>
@@ -93,11 +100,14 @@ public static partial class StringExtensions
         }
 
         ///<summary>
-        /// Метод преобразует <paramref name="blocks"/> в индексы начал подстрок
+        /// Метод преобразует <paramref name="blocks"/> 
+        /// в индексы начал подстрок
         ///</summary>
         ///<param name="blocks"> Таблица блоков </param>
         ///<param name="patternLen"> Длина шаблона </param>
-        private IEnumerable<int> GetStartIndexiesOfSubstrings(int[] blocks, int patternLen)
+        private IEnumerable<int> GetStartIndexiesOfSubstrings(
+            int[] blocks,
+            int patternLen)
         {
             for (int i = 0; i < blocks.Length; i++) {
                 if (blocks[i] == patternLen)
@@ -107,12 +117,15 @@ public static partial class StringExtensions
 
 
 
-        public override IEnumerable<int> SearchSubstring(string pattern, string text)
+        public override IEnumerable<int> SearchSubstring(
+            string pattern,
+            string text)
         {
             var str = JoinStrings(pattern, text);
             var blocks = GetTable(str).ToArray();
 
-            var result = GetStartIndexiesOfSubstrings(blocks, pattern.Length).ToList();
+            var result = 
+                GetStartIndexiesOfSubstrings(blocks, pattern.Length).ToList();
 
             return result.Select(i => i - 1);
         }
