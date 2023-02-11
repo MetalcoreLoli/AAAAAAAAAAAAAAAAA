@@ -16,6 +16,12 @@ public static partial class StringExtensions
 
         public abstract IEnumerable<int> GetTable(string str);
 
+        /// <summary>
+        /// Поиск <paramref name="pattern"/> в <paramref name="sample"/>
+        /// </summary>
+        /// <param name="pattern">Шаблон</param>
+        /// <param name="sample">Строка</param>
+        /// <returns>Индексы всех найденных подстрок</returns>
         public abstract IEnumerable<int> SearchSubstring(string pattern, string sample);
     }
 }

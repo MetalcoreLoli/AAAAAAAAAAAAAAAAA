@@ -4,6 +4,11 @@ public static partial class StringExtensions
 {
     public class BorderStringSearchMethod : MethodOfSearchInString
     {
+        ///<summary>
+        /// Метод преобразовывает <paramref name="borders"/> в индексы в строке
+        ///</summary>
+        ///<param name="borders"> Таблица граней </param>
+        ///<param name="patternLength"> Длина шаблона </param>
         private IEnumerable<int> GetRightBorders(int[] borders, int patternLength)
         {
             for (int i = 0; i < borders.Length; i++)
@@ -13,7 +18,13 @@ public static partial class StringExtensions
             }
         }
 
-        public IEnumerable<int> BordersTable(String str)
+        ///<summary>
+        /// Метод возвращает таблицу граней.
+        ///</summary>
+        ///<param name="str"> 
+        ///     Данный параметр должен соответствовать следующей форме:
+        ///     шаблон + 'не_алфавитный_символ' + строка
+        ///</param>
         public override IEnumerable<int> GetTable(String str)
         {
             int n = str.Length;

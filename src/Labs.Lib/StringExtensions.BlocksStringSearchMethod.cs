@@ -26,7 +26,13 @@ public static partial class StringExtensions
         private int LengthOfMatchedSubstring(string str, int startOfSubstring) => 
             Cmp(str, 0, startOfSubstring);
 
-        public IEnumerable<int> BlocksTable(string str) {
+        ///<summary>
+        /// Метод возвращает таблицу блоков.
+        ///</summary>
+        ///<param name="str"> 
+        ///     Данный параметр должен соответствовать следующей форме:
+        ///     шаблон + 'не_алфавитный_символ' + строка
+        ///</param>
         public override IEnumerable<int> GetTable(string str) {
             var blocks = new int[str.Length];
             int leftIdx = 0, rightIdx = 0;
@@ -67,6 +73,11 @@ public static partial class StringExtensions
             return blocks;
         }
 
+        ///<summary>
+        /// Метод преобразует <paramref name="blocks"/> в индексы начал подстрок
+        ///</summary>
+        ///<param name="blocks"> Таблица блоков </param>
+        ///<param name="patternLen"> Длина шаблона </param>
         private IEnumerable<int> GetStartIndexiesOfSubstrings(int[] blocks, int patternLen)
         {
             for (int i = 0; i < blocks.Length; i++) {
@@ -74,6 +85,7 @@ public static partial class StringExtensions
                     yield return (i - patternLen);
             }
         }
+
         public enum IndexType
         {
             Human, Programmer

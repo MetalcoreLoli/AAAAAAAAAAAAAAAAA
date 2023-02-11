@@ -4,6 +4,12 @@ public static partial class StringExtensions
 {
     public static class Transmutation
     {
+        /// <summary>
+        /// Метода преобразовывает <paramref name="blocks"/> в таблицу граней
+        /// </summary>
+        /// <param name="blocks"> Таблица блоков </param>
+        /// <param name="n"> Длина строки состоящей из не алфавитного символа, шаблона и текста</param>
+        /// <returns> Возвращает таблицу граней </returns>
         public static IEnumerable<int> FromBlocksToBorders(int[] blocks, int n)
         {
             var borders = new int[blocks.Length];
@@ -18,6 +24,12 @@ public static partial class StringExtensions
             return borders.Select(i => i - 1);
         }
 
+        /// <summary>
+        /// Метода преобразовывает <paramref name="brs"/> в таблицу блоков 
+        /// </summary>
+        /// <param name="brs"> Таблица граней </param>
+        /// <param name="n"> Длина строки состоящей из не алфавитного символа, шаблона и текста</param>
+        /// <returns> Возвращает таблицу блоков </returns>
         public static IEnumerable<int> FromBordersToBlocks(int[] brs, int n)
         {
             int ValGrow(int[] borders, int stringLength, int nVal, int i0) 
