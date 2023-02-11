@@ -9,13 +9,20 @@ public static partial class StringExtensions
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool IsIndexInsideOfString(string str, int idx) => str.Length > idx;
 
-        private int Cmp(string str, int patternPosition, int substringPosition) 
+        ///<summary>
+        /// Метод сравнивает подстроки
+        ///</summary>
+        ///<param name="str"> Текст, в котором сравниваются подстроки </param>
+        ///<param name="s1Position"> Начало первой подстроки </param>
+        ///<param name="s2Position"> Начало второй подстроки </param>
+        ///<returns> Возвращает длину подстроки, если подстроки не равны, то вернется 0 </returns>
+        private int Cmp(string str, int s1Position, int s2Position) 
         {
             int n = str.Length;
 
             int eqLen = 0;
-            while (patternPosition < n && substringPosition < n 
-                    && str[patternPosition++] == str[substringPosition++]) 
+            while (s1Position < n && s2Position < n 
+                    && str[s1Position++] == str[s2Position++]) 
                 ++eqLen;
 
             return eqLen;
