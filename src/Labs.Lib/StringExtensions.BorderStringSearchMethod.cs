@@ -27,20 +27,25 @@ public static partial class StringExtensions
         ///</param>
         public override IEnumerable<int> GetTable(String str)
         {
-            int n = str.Length;
+            var n = str.Length;
             var borders = new int[n];
+
             borders[0] = -1;
 
-            for (int i = 0; i < n - 1; i++)
+            for (var i = 0; i < n - 1; i++)
             {
-                int tmp = borders[i];
+                var prevPatternIdx = borders[i];
 
-                while ((tmp > -1) && (str[i + 1] != str[tmp + 1])) tmp = borders[tmp];
+                var patternIdx = prevPatternIdx + 1;
+                var charIdx = i + 1;
 
-                if (str[i + 1] == str[tmp + 1])
-                    borders[i + 1] = tmp + 1;
-                else
-                    borders[i + 1] = -1;
+                while (prevPatternIdx > -1 && str[charIdx] != str[patternIdx])
+                {
+                    prevPatternIdx = borders[prevPatternIdx];
+                    patternIdx = prevPatternIdx + 1;
+                }
+
+                borders[charIdx] = str[charIdx] == str[patternIdx] ? patternIdx : -1;
             }
 
             return borders;
