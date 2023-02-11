@@ -28,11 +28,20 @@ public static partial class StringExtensions
             return eqLen;
         }
 
-        private int LengthOfMatchedSubstring(string str, int startOfSubstring) => 
+        ///<summary>
+        /// Длина следующей совпавшей с паттерном подстроки
+        ///</summary>
+        ///<param name="str"> паттерн + 'не_алфавитный_символ' + текст</param>
+        ///<param name="startOfSubstring"> индекс в <paramref name="str"/> откуда начинать сравнение. <param>
+        ///<returns>
+        ///  Вернет длину подстроки или 0, если подстрока не будет совпадать с паттерном.
+        ///</returns>
+        private int LengthOfNextMatchedSubstring(string str, int startOfSubstring) => 
             Cmp(str, 0, startOfSubstring);
 
         ///<summary>
-        /// Метод возвращает таблицу блоков.
+        /// Метод возвращает таблицу блоков. 
+        /// Блок - это длина подстроки
         ///</summary>
         ///<param name="str"> 
         ///     Данный параметр должен соответствовать следующей форме:
@@ -45,11 +54,16 @@ public static partial class StringExtensions
             for (int i = 1; i < str.Length; i++) 
             {
                 blocks[i] = 0;
+                // проверяет дошли ли до конца текущей подстроки
                 if (i >= rightIdx) 
                 {
-                    blocks[i] = LengthOfMatchedSubstring(str, i);
+                    // ищем длину следующей подстроки
+                    blocks[i] = LengthOfNextMatchedSubstring(str, i);
                     var isSubstringExist = blocks[i] > 0;
 
+                    // если подстрока совпадающая с паттерном существует, то
+                    // смещаем начало текущей подстроки(leftIdx) к началу найденной подстроки
+                    // также смещаем конец текущей подстроки(rightIdx) в конец найденной подстроки
                     if (isSubstringExist) 
                     {
                         rightIdx = i + blocks[i];
