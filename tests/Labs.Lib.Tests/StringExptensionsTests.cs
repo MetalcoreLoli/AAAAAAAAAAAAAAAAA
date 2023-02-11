@@ -46,8 +46,8 @@ public class StringExtenstionsTests
         var text = "ababa";
         var patternText = pattern + "$" + text;
 
-        var excepted = StringExtensions.BordersMethod.BordersTable(patternText).ToArray();    
-        var blocks = StringExtensions.BlocksProgrammerMethod.BlocksTable(patternText).ToArray();
+        var excepted = StringExtensions.BordersMethod.GetTable(patternText).ToArray();    
+        var blocks = StringExtensions.BlocksProgrammerMethod.GetTable(patternText).ToArray();
 
         //act
         var result = StringExtensions.Transmutation.FromBlocksToBorders(blocks, (patternText).Length);
@@ -63,8 +63,8 @@ public class StringExtenstionsTests
         var text = "ababa";
         var patternText = pattern + "$" + text;
 
-        var borders = StringExtensions.BordersMethod.BordersTable(patternText).ToArray();
-        var excepted  = StringExtensions.BlocksProgrammerMethod.BlocksTable(patternText).ToArray();
+        var borders = StringExtensions.BordersMethod.GetTable(patternText).ToArray();
+        var excepted  = StringExtensions.BlocksProgrammerMethod.GetTable(patternText).ToArray();
 
         //act
         var result = StringExtensions.Transmutation.FromBordersToBlocks(borders, (patternText).Length);

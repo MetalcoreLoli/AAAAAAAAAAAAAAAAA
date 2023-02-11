@@ -27,6 +27,7 @@ public static partial class StringExtensions
             Cmp(str, 0, startOfSubstring);
 
         public IEnumerable<int> BlocksTable(string str) {
+        public override IEnumerable<int> GetTable(string str) {
             var blocks = new int[str.Length];
             int leftIdx = 0, rightIdx = 0;
 
@@ -66,6 +67,13 @@ public static partial class StringExtensions
             return blocks;
         }
 
+        private IEnumerable<int> GetStartIndexiesOfSubstrings(int[] blocks, int patternLen)
+        {
+            for (int i = 0; i < blocks.Length; i++) {
+                if (blocks[i] == patternLen)
+                    yield return (i - patternLen);
+            }
+        }
         public enum IndexType
         {
             Human, Programmer
@@ -79,20 +87,13 @@ public static partial class StringExtensions
             IndexForma = indexForma;
         }
 
-        private IEnumerable<int> GetBlocks(int[] data, int patternLen)
-        {
-            for (int i = 0; i < data.Length; i++) {
-                if (data[i] == patternLen)
-                    yield return (i - patternLen);
-            }
-        }
 
         public override IEnumerable<int> SearchSubstring(string pattern, string text)
         {
             var str = JoinRows(pattern, text);
-            var blocks = BlocksTable(str).ToArray();
+            var blocks = GetTable(str).ToArray();
 
-            var result = GetBlocks(blocks, pattern.Length).ToList();
+            var result = GetStartIndexiesOfSubstrings(blocks, pattern.Length).ToList();
 
             return IndexForma switch       
             {

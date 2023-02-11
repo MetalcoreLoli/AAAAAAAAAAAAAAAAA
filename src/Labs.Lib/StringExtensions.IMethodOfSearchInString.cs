@@ -14,6 +14,7 @@ public static partial class StringExtensions
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected String JoinRows(String s1, String s2) => s1 + "$" + s2;
 
+        public abstract IEnumerable<int> GetTable(string str);
 
         public abstract IEnumerable<int> SearchSubstring(string pattern, string sample);
     }

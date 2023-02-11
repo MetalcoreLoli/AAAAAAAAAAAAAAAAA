@@ -14,6 +14,7 @@ public static partial class StringExtensions
         }
 
         public IEnumerable<int> BordersTable(String str)
+        public override IEnumerable<int> GetTable(String str)
         {
             int n = str.Length;
             var borders = new int[n];
@@ -39,7 +40,7 @@ public static partial class StringExtensions
         {
             String str = JoinRows(pattern, sample);
 
-            var borders = BordersTable(str).ToArray();
+            var borders = GetTable(str).ToArray();
             int lengthPattern = pattern.Length;
 
             return GetRightBorders(borders, lengthPattern);
