@@ -1,12 +1,12 @@
 # AAAAAAAAAAAAAAAAA
 ## Задачка 2 
-находистя в StringExtentions в методе GetAllBorders
+находится в StringExtensions в методе GetAllBorders
 
 ## Задачка 3
-находистя в StringExtentions.BordresStringSearchMethod
+находится в StringExtensions.BordresStringSearchMethod
 
 ## Задачка 4
-находистя в StringExtentions.BlocksStringSearchMethod
+находится в StringExtensions.BlocksStringSearchMethod
 
 ## Задачка 7
-находистя в StringExtentions.Trasnmutations в метдах FromBlocksToBorders и FromBordersToBlocks
+находится в StringExtensions.Trasnmutation в методах FromBlocksToBorders и FromBordersToBlocks
