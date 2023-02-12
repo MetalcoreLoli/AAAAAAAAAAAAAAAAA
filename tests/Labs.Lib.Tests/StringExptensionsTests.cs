@@ -90,6 +90,7 @@ public class StringExtenstionsTests
 
     public static IEnumerable<object[]> GetRightIndexOfSubstringsTestsData = new List<object[]> ()
     {               
+        new object[] {"ABAAB","ABAABABAABAAB", new int[] {4, 9, 12}},
                     // 0  1  2  3 4 5 6  7  8
                     // a  b  a  $ a b a  b  a
                     //-1 -1 -1 -1 0 1 2  1  2
@@ -99,6 +100,7 @@ public class StringExtenstionsTests
                     // a  b  $ a b  b a b
                     //-1 -1 -1 0 1 -1 0 1
         new object[] {"ab","abbab", new int[] {1, 4}},
+        
     };
     
     public static IEnumerable<object[]> TransmutationTestData = new List<object[]> ()
