@@ -6,5 +6,9 @@
     {
         "Pattern": "ab",
         "Text": "abbab"
+    },
+    {
+        "Pattern":"",
+        "Text": "abba"
     }
 ]
