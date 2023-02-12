@@ -3,7 +3,7 @@
 находится в StringExtensions в методе GetAllBorders
 
 ## Задачка 3
-находится в StringExtensions.BordresStringSearchMethod
+находится в StringExtensions.BordersStringSearchMethod
 
 ## Задачка 4
 находится в StringExtensions.BlocksStringSearchMethod
