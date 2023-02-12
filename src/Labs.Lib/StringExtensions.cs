@@ -4,7 +4,7 @@ public static partial class StringExtensions
 {
 
     ///<summary>
-    /// Методов поиска граней в строке <paramref name="value"/>
+    /// Метод поиска граней в строке <paramref name="value"/>
     ///</summary>
     ///<param name="value"> Строка, в которой ищутся грани</param>
     ///<returns>Возвращает массив граней</returns>
