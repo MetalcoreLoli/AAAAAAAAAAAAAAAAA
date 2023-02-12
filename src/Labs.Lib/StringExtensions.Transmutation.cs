@@ -5,7 +5,7 @@ public static partial class StringExtensions
     public static class Transmutation
     {
         /// <summary>
-        /// Метода преобразовывает <paramref name="blocks"/> в таблицу граней
+        /// Метод преобразовывает <paramref name="blocks"/> в таблицу граней
         /// </summary>
         /// <param name="blocks"> Таблица блоков </param>
         /// <param name="n"> 
@@ -27,7 +27,7 @@ public static partial class StringExtensions
         }
 
         /// <summary>
-        /// Метода преобразовывает <paramref name="brs"/> в таблицу блоков 
+        /// Метод преобразовывает <paramref name="brs"/> в таблицу блоков 
         /// </summary>
         /// <param name="brs"> Таблица граней </param>
         /// <param name="n"> 
